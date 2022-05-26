@@ -1,0 +1,144 @@
+/*
+$ sass bootstrap-custom.scss bootstrap-custom.css
+*/
+
+/* https://themestr.app/ */
+/*! `Custom` Bootstrap 5 theme */
+
+$primary:#528078;
+$secondary:#eed75a;
+$success:#FEC100;
+$danger:#703B3B;
+$info:#63e792;
+$warning:#FFE869;
+$light:#FDFBF7;
+$dark:#555555;
+
+// Add SASS theme customizations here..
+
+@import "/usr/local/lib/node_modules/bootstrap/scss/bootstrap.scss";
+
+.base {
+    @extend .bg-primary;
+}
+
+nav {
+    @extend .navbar, .navbar-expand-md, .navbar-dark, .text-light, .bg-primary, .px-3;
+    a.brand {
+        @extend .navbar-brand;
+    }
+    label {
+        @extend .navbar-brand, .btn, .m-0;
+    }
+    button {
+        @extend .navbar-toggler;
+        span {
+            @extend .navbar-toggler-icon;
+        }
+    }
+    
+    div {
+        ul {
+            @extend .navbar-nav, .me-auto;
+            li {
+                @extend .nav-item, .active;
+            }
+        }
+        a {
+            @extend .nav-link;
+        }
+        a.btn {
+            @extend .btn, .btn-outline-success, .my-2, .my-sm-0;
+        }
+    }
+}
+main {
+    @extend .container-fluid;
+    header {
+        @extend .container, .my-2, h4;
+        figcaption {
+            font-size: 10px;
+            font-weight: normal;
+            text-align: right;
+            width: 100%;
+        }
+    }
+    footer {
+        @extend .container, .my-0, .py-0;
+        text-align: right;
+        span {
+            @extend .text-secondary;
+            font-size: small;
+            font-style: italic;
+            display: inline-block;
+        }
+    }
+    article {
+        @extend .container, .my-2;
+        header {
+            @extend h5;
+        }
+    }
+    @mixin side-card {
+        @extend .px-0, .mx-3, .my-3, .rounded-3, .shadow;
+        aside {
+            @extend .card-body;
+            header {
+                @extend h4, .card-title, .btn, .rounded-pill, .btn-outline-dark;
+            }
+            ul {
+                @extend .list-group, .list-group-flush;
+                li {
+                    @extend .list-group-item;
+                }
+                a {
+                    @extend .h6, .small;
+                }
+            }
+        }
+    }
+    @mixin columns-3($start, $center, $end) {
+        @extend .row, .justify-content-md-center;
+        div.column-start {
+            @extend .order-2, .order-md-1, .col-md-#{$start}, .px-0;
+            div.card {
+                @include side-card();
+            }
+        }
+        div.column-center {
+            @extend .col-12, .order-1, .order-md-2, .col-md-#{$center}, .px-0, .mx-0;
+        }
+        div.column-end {
+            @extend .order-3, .order-md-3, .col-md-#{$end}, .px-1;
+            div.card {
+                @include side-card();
+            }
+        }
+    }
+    @mixin columns-2l($start, $center) {
+        @extend .row, .justify-content-md-center;
+        div.column-start {
+            @extend .order-2, .order-md-1, .col-md-#{$start}, .px-0, .bg-success;
+            div.card {
+                @include side-card();
+            }
+        }
+        div.column-center {
+            @extend .col-12, .order-1, .order-md-2, .col-md-#{$center}, .px-0, .mx-0, .bg-secondary;
+        }
+    }
+
+    div.column3 {
+        @include columns-3(2,7,3);
+    }
+    div.column3x {
+        @include columns-3(1,10,1);
+    }
+    div.column2-lmenu {
+        @include columns-2l(2, 10);
+    }
+
+    div.foot {
+        @extend .row, .justify-content-md-center, .bg-primary;
+    }
+}

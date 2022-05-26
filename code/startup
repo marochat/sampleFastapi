@@ -1,0 +1,36 @@
+#!/bin/bash
+echo fastAPI sample project template.
+cd /code
+#
+sudo chown app.app . || exit 1
+
+# ----------------------
+# 環境変数 ツールバージョン
+# ----------------------
+PYTHON_VERSION=`python --version`
+NODEJS_VERSION=`node --version`
+TYPESCRIPT_VERSION=`tsc --version`
+SASS_VERSION=`sass --version`
+
+cd ~
+pushd static
+pushd js
+cp /usr/local/lib/node_modules/bootstrap/dist/js/bootstrap.esm.js .
+cp /usr/local/lib/node_modules/bootstrap/dist/js/bootstrap.esm.js.map .
+cat bootstrap.esm.js \
+    | sed -r "s/^(import .* as Popper from .*').+(';)$/\1\/js\/popperjs\/popper.js\2/g" > tmpfile
+rm bootstrap.esm.js
+mv tmpfile bootstrap.esm.js
+popd
+cd ~
+
+# SCSSの監視型コンパイラ起動
+cd /code/src/scss
+sass --watch ./:/code/static/css/ >& sass.log &
+# typescriptの監視型コンパイラ起動
+cd /code/src/ts
+tsc -p . --outDir /code/static/js -w &> tscout.log &
+
+cd /code
+# uvicorn デーモン起動
+uvicorn app.main:app --host 0.0.0.0 --proxy-headers --forwarded-allow-ips "*" --reload

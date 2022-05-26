@@ -1,0 +1,12 @@
+structlog
+numpy
+pymysql
+fastapi
+aiofiles
+jinja2
+pydantic[email]
+SQLAlchemy
+python-multipart
+uvicorn[standard]
+python-jose[cryptography]
+passlib[bcrypt]

@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  fastapi:
+    build: .
+    image: fastapi_image:local
+    user: app
+    command: /code/startup
+    #command: "uvicorn app.main:app --host 0.0.0.0 --proxy-headers --forwarded-allow-ips * --reload"
+    expose:
+      - "8000"
+    volumes:
+      - ./code:/code
+    environment:
+      - TZ=Asia/Tokyo
+  nginx:
+    image: nginx:alpine
+    expose:
+      - "80"
+    ports:
+      - "${NGINX_PORT:-8080}:80"
+    depends_on:
+      - fastapi
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      #- ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+    environment:
+      - TZ=Asia/Tokyo
+    restart: always
+

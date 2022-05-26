@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords"  content="">
+  <meta name="description" content="">
+  <title>fastAPI sample Document</title>
+  <link rel="icon" href="">
+  <style type="text/css">
+    @import "{{ url_for('static', path='css/bootstrap-custom.css') }}";
+  </style>
+  <script type="module">
+    import { Alert, Button, Carousel, Collapse, Dropdown, Modal, Offcanvas, Popover, ScrollSpy, Tab, Toast, Tooltip } from "{{ url_for( 'static', path='js/bootstrap.esm.js') }}"
+  </script>
+</head>
+<body class="base">
+  <nav>sample navigation</nav>
+  <main>
+    <div class="column2-lmenu">
+      <div class="column-start">
+        <div class="card">
+          <aside>
+            <header>side menu</header>
+            <ul>
+              <li>sample1</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+      <div class="column-center">
+        <article>
+          <header>FastAPI SPAPP sample</header>
+          <p>This is sample template of FastAPI single page application.</p>
+        </article>
+      </div>
+    </div>
+    <div class="foot">
+      <footer>
+        <hr>
+        <span>Copyright &copy; fastAPI sample template site.</span>
+      </footer>  
+    </div>
+  </main>
+  <script type="module">
+    import {init} from "{{ url_for('static', path='js/app.js') }}"
+    window.addEventListener("load", init());
+  </script>
+</body>
+</html>
