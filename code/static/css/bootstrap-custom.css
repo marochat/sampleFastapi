@@ -101,7 +101,7 @@ hr:not([size]) {
   height: 1px;
 }
 
-h6, .h6, main div.column2-lmenu div.column-start div.card aside ul a, main div.column3x div.column-end div.card aside ul a, main div.column3x div.column-start div.card aside ul a, main div.column3 div.column-end div.card aside ul a, main div.column3 div.column-start div.card aside ul a, h5, main article header, .h5, h4, main div.column2-lmenu div.column-start div.card aside header, main div.column3x div.column-end div.card aside header, main div.column3x div.column-start div.card aside header, main div.column3 div.column-end div.card aside header, main div.column3 div.column-start div.card aside header, main header, .h4, h3, .h3, h2, .h2, h1, .h1 {
+h6, .h6, main div.column2-lmenu div.column-start div.card aside ul a, main div.column3x div.column-end div.card aside ul a, main div.column3x div.column-start div.card aside ul a, main div.column3 div.column-end div.card aside ul a, main div.column3 div.column-start div.card aside ul a, h5, main article header, .h5, h4, main div.column2-lmenu div.column-start div.card aside header, main div.column3x div.column-end div.card aside header, main div.column3x div.column-start div.card aside header, main div.column3 div.column-end div.card aside header, main div.column3 div.column-start div.card aside header, main header, nav div.modal-login div header, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-weight: 500;
@@ -135,11 +135,11 @@ h3, .h3 {
   }
 }
 
-h4, main div.column2-lmenu div.column-start div.card aside header, main div.column3x div.column-end div.card aside header, main div.column3x div.column-start div.card aside header, main div.column3 div.column-end div.card aside header, main div.column3 div.column-start div.card aside header, main header, .h4 {
+h4, main div.column2-lmenu div.column-start div.card aside header, main div.column3x div.column-end div.card aside header, main div.column3x div.column-start div.card aside header, main div.column3 div.column-end div.card aside header, main div.column3 div.column-start div.card aside header, main header, nav div.modal-login div header, .h4 {
   font-size: calc(1.275rem + 0.3vw);
 }
 @media (min-width: 1200px) {
-  h4, main div.column2-lmenu div.column-start div.card aside header, main div.column3x div.column-end div.card aside header, main div.column3x div.column-start div.card aside header, main div.column3 div.column-end div.card aside header, main div.column3 div.column-start div.card aside header, main header, .h4 {
+  h4, main div.column2-lmenu div.column-start div.card aside header, main div.column3x div.column-end div.card aside header, main div.column3x div.column-start div.card aside header, main div.column3 div.column-end div.card aside header, main div.column3 div.column-start div.card aside header, main header, nav div.modal-login div header, .h4 {
     font-size: 1.5rem;
   }
 }
@@ -7293,7 +7293,7 @@ nav div ul .carousel-fade li.carousel-item-end {
   margin-bottom: 0.25rem !important;
 }
 
-.my-2, main article, main header, nav div a.btn {
+.my-2, main table.debuglist, main article, main header, nav div a.btn {
   margin-top: 0.5rem !important;
   margin-bottom: 0.5rem !important;
 }
@@ -7768,7 +7768,7 @@ nav div ul .carousel-fade li.carousel-item-end {
   color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important;
 }
 
-.text-dark {
+.text-dark, nav div.modal-login .modalClose, nav div.modal-login div {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
 }
@@ -11297,6 +11297,72 @@ nav div ul .carousel-fade li.carousel-item-end {
     display: none !important;
   }
 }
+nav div.modal-login {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes modalclose {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+nav div.modal-login div {
+  position: relative;
+  background-color: wheat;
+  margin: 20% auto;
+  padding: 10px 20px;
+  width: 50%;
+  min-width: 640px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+nav div.modal-login div header {
+  position: relative;
+  text-align: center;
+  margin: 1rem 0;
+}
+nav div.modal-login div table {
+  margin: auto;
+  position: relative;
+  padding: 3px;
+  border-collapse: separate;
+  border-spacing: 0px 15px;
+}
+nav div.modal-login div table input {
+  position: relative;
+}
+nav div.modal-login div.close {
+  animation-name: modalclose;
+  animation-duration: 0.5s;
+}
+nav div.modal-login .modalClose {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 1.5rem;
+}
+nav div.modal-login .modalClose:hover {
+  cursor: pointer;
+}
 main header figcaption {
   font-size: 10px;
   font-weight: normal;
@@ -11310,6 +11376,13 @@ main footer span {
   font-size: small;
   font-style: italic;
   display: inline-block;
+}
+main table.debuglist {
+  border: solid 1px;
+}
+main table.debuglist td, main table.debuglist th {
+  border: solid 1px;
+  padding: 5px;
 }
 
 /*# sourceMappingURL=bootstrap-custom.css.map */

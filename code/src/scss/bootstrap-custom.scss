@@ -4,7 +4,6 @@ $ sass bootstrap-custom.scss bootstrap-custom.css
 
 /* https://themestr.app/ */
 /*! `Custom` Bootstrap 5 theme */
-
 $primary:#528078;
 $secondary:#eed75a;
 $success:#FEC100;
@@ -37,6 +36,72 @@ nav {
         }
     }
     
+    div.modal-login {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.5);
+
+        @keyframes modalopen {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        @keyframes modalclose {
+            from {opacity: 1;}
+            to {opacity: 0;}
+        }
+
+        div {
+            @extend .text-dark;
+            //background-color: "white";
+            position: relative;
+            background-color: wheat;
+            margin: 20% auto;
+            padding: 10px 20px;
+            width: 50%;
+            min-width: 640px;
+            //text-align: center;
+            box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+            animation-name: modalopen;
+            animation-duration: 1s;
+            
+            header {
+                @extend h4;
+                position: relative;
+                text-align: center;
+                margin: 1rem 0;
+            }
+            table {
+                margin:auto;
+                position: relative;
+                padding: 3px;
+                border-collapse: separate;
+                border-spacing: 0px 15px;
+                input {
+                    position: relative;
+                }
+            }
+        }
+        div.close {
+            animation-name: modalclose;
+            animation-duration: 0.5s;
+        }
+    .modalClose {
+            @extend .text-dark;
+            position: absolute;
+            top: 0;
+            right: 10px;
+            font-size: 1.5rem;
+        }
+        .modalClose:hover {
+            cursor: pointer;
+        }
+    }
     div {
         ul {
             @extend .navbar-nav, .me-auto;
@@ -140,5 +205,13 @@ main {
 
     div.foot {
         @extend .row, .justify-content-md-center, .bg-primary;
+    }
+    table.debuglist {
+        @extend .my-2;
+        border: solid 1px;
+        td, th {
+            border: solid 1px;
+            padding: 5px;
+        }
     }
 }
